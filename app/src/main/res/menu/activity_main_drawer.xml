@@ -4,30 +4,36 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+        <!-- Todos -->
         <item
             android:id="@+id/nav_item_carros_todos"
             android:icon="@drawable/ic_drawer_carro"
             android:checked="true"
             android:title="@string/carros" />
+        <!-- Clássicos -->
         <item
             android:id="@+id/nav_item_carros_classicos"
             android:icon="@drawable/ic_drawer_carro"
             android:checked="true"
             android:title="@string/classicos" />
+        <!-- Esportivos -->
         <item
             android:id="@+id/nav_item_carros_esportivos"
             android:icon="@drawable/ic_drawer_carro"
             android:checked="true"
             android:title="@string/esportivos" />
+        <!-- Luxo -->
         <item
             android:id="@+id/nav_item_carros_luxo"
             android:icon="@drawable/ic_drawer_carro"
             android:checked="true"
             android:title="@string/luxo" />
+        <!-- WebView com informações do livro -->
         <item
             android:id="@+id/nav_item_site_livro"
             android:icon="@drawable/ic_drawer_site_livro"
             android:title="@string/site_do_livro" />
+        <!-- Configurações -->
         <item
             android:id="@+id/nav_item_settings"
             android:icon="@drawable/ic_drawer_settings"

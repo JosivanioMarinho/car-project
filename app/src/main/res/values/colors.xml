@@ -10,8 +10,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Projeto -->
-    <color name="colorPrimary">#3f5185</color><!-- Cor primária do app -->
-    <color name="colorPrimaryDark">#303f9f</color><!-- Cor secundária do app -->
+    <color name="colorPrimary">#303f9f</color><!-- Cor primária do app -->
+    <color name="colorPrimaryDark">#3f5185</color><!-- Cor secundária do app -->
     <color name="colorAccent">#ff4081</color><!-- Cor de acentuação para as views -->
     <color name="colorAccentDark">#C60145</color>
     <color name="color_highlight">#b3e5fc</color><!-- Cor para o efeito ripple -->
