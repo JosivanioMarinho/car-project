@@ -15,11 +15,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- WebView -->
-        <WebView
-            android:id="@+id/webview"
+        <!-- SwipeToRefresh -->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeToRefresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+            <!-- WebView -->
+            <WebView
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <!-- ProgreeBar -->
         <ProgressBar

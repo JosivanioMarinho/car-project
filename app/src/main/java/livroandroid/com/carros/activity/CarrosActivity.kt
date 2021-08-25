@@ -1,6 +1,5 @@
 package livroandroid.com.carros.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import livroandroid.com.carros.R

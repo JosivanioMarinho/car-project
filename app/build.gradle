@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions' // Plugin para dispensar o findViewById() e outras coisas que diminuem o codigo
 }
 
 android {

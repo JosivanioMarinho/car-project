@@ -18,7 +18,7 @@ class CarrosApplication : Application() {
         private var appInstance: CarrosApplication? = null
         fun getInstance(): CarrosApplication {
             if (appInstance == null) {
-                throw IllegalStateException("Configure a classe de Application no AndoidManifest.xml")
+                throw IllegalStateException("Configure a classe de Application no AndroidManifest.xml")
             }
             return appInstance!!
         }
