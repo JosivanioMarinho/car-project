@@ -51,5 +51,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // anko
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
+    // Picasso: lib para dawnoad de imagens
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }

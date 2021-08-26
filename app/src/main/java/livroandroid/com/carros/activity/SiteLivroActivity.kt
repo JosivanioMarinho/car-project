@@ -23,6 +23,7 @@ class SiteLivroActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_site_livro)
+
         // Toobar
         setupToobar(R.id.toolbar, upNavigation = true, title = "WebView")
 
