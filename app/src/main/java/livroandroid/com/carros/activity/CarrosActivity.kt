@@ -1,5 +1,6 @@
 package livroandroid.com.carros.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toolbar
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -12,6 +13,8 @@ import livroandroid.com.carros.domain.CarroService
 import livroandroid.com.carros.domain.TipoCarro
 import livroandroid.com.carros.extensions.setupToobar
 import livroandroid.com.carros.extensions.toast
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 class CarrosActivity : BaseActivity() {
 
@@ -23,13 +26,15 @@ class CarrosActivity : BaseActivity() {
         setContentView(R.layout.activity_carros)
 
         // Configura a Toobar
-        setupToobar(R.id.toolbar, title = "Lista de carros")
+        setupToobar(R.id.toolbar)
 
         // Liga o UpNavigation
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Le os tipos dos argumentoa
         this.tipo = intent.getSerializableExtra("tipo") as TipoCarro
+        var titleToobar = context.getString(this.tipo.string)
+        supportActionBar?.title = titleToobar
 
         // RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -46,10 +51,11 @@ class CarrosActivity : BaseActivity() {
         // Busca os carros
         this.carros = CarroService.getCarros(context, tipo)
         // Atualiza a lista
-        recyclerView.adapter = CarroAdapter( carros,
-            { carro: Carro ->
-                toast("@Clicou no carro ${carro.nome}")
-            }
-        )
+        recyclerView.adapter = CarroAdapter(carros) { onCliqueCarro(it) }
+    }
+
+    // Trata o evento de click do carro
+    private fun onCliqueCarro(carro: Carro) {
+        startActivity<CarroActivity>("carro" to carro)
     }
 }

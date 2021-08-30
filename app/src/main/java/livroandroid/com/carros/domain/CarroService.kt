@@ -17,7 +17,7 @@ object CarroService {
                 c.nome = "Carro $tipoString: $i"
                 c.desc = "Desc $i"
                 // Url da foto fixa por enquanto
-                c.urlFoto = "http://www.livroandroid.com.br/livro/carros/esportivos/Ferrari_FF.png"
+                c.urlFoto = "http://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/luxo/Lamborghini_Reventon.png"
                 carros.add(c)
             }
             return carros

@@ -8,9 +8,12 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import livroandroid.com.carros.R
 import livroandroid.com.carros.domain.Carro
+import livroandroid.com.carros.extensions.loadUrl
+import kotlinx.android.synthetic.main.adapter_carro.view.*
+
+/** Estou usando a Kotlin Extensions aqui tambem **/
 
 // Define o construtor que recebe (carro, onClick)
 class CarroAdapter(
@@ -28,35 +31,21 @@ class CarroAdapter(
 
     // Faz o bind para atualizarv o valor das views com os dados dos carros
     override fun onBindViewHolder(holder: CarrosViewHolder, position: Int) {
-        val context = holder.itemView.context
-
         // Recupera o objeto Carro
         val carro = carros[position]
 
+        // Declara a view para facilitar o acesso abaixo
+        // A view contém as variáveis definidas no xml (lembrar o nome de cada id)
+        val view = holder.itemView
+
         // Atualiza os dados do carro
-        holder.tNome.text = carro.nome
-        holder.process.visibility = View.VISIBLE
+        view.tNome.text = carro.nome
 
         // Faz o download da foto e mostra o progressBar
-        if (carro.urlFoto.trim().isEmpty()) {
-            // Deixa a imagem vazia se não tiver foto
-            holder.img.setImageBitmap(null)
-        } else {
-            // Faz o download da foto e mostra o ProgressBar
-            Picasso.with(context).load(carro.urlFoto).fit().into(holder.img,
-                object : com.squareup.picasso.Callback {
-                    override fun onSuccess() {
-                        // Download OK
-                        holder.process.visibility = View.INVISIBLE
-                    }
-                    override fun onError() {
-                        holder.process.visibility = View.GONE
-                    }
-                }
-            )
-        }
+        view.img.loadUrl(carro.urlFoto, view.progress)
+
         // Adiciona o evento de click na linha
-        holder.itemView.setOnClickListener { onClick(carro) }
+        view.setOnClickListener { onClick(carro) }
     }
 
     // Retorna a quantidade de carros na lista
@@ -65,10 +54,12 @@ class CarroAdapter(
     // ViewHolder com aas viewa
     class CarrosViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
+        // Não é mais necessário declarar variáveis aqui :-)
+
         // Views do layuot
-        var tNome: TextView = view.findViewById(R.id.tNome)
+        /*var tNome: TextView = view.findViewById(R.id.tNome)
         var img: ImageView = view.findViewById(R.id.img)
-        var process: ProgressBar = view.findViewById(R.id.progress)
-        var cardView: CardView = view.findViewById(R.id.card_view)
+        var progress: ProgressBar = view.findViewById(R.id.progress)
+        var cardView: CardView = view.findViewById(R.id.card_view)*/
     }
 }

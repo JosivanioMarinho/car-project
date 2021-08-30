@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="livroandroid.com.carros">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".CarrosApplication"
@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Carros">
         <activity
-            android:name=".activity.SiteLivroActivity"
+            android:name=".activity.CarroActivity"
             android:parentActivityName=".activity.MainActivity"
             android:exported="true" />
+        <activity
+            android:name=".activity.SiteLivroActivity"
+            android:exported="true"
+            android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.CarrosActivity"
             android:parentActivityName=".activity.MainActivity" />
