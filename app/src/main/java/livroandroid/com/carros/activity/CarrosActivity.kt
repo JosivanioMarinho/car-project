@@ -26,10 +26,7 @@ class CarrosActivity : BaseActivity() {
         setContentView(R.layout.activity_carros)
 
         // Configura a Toobar
-        setupToobar(R.id.toolbar)
-
-        // Liga o UpNavigation
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setupToobar(R.id.toolbar, upNavigation = true)
 
         // Le os tipos dos argumentoa
         this.tipo = intent.getSerializableExtra("tipo") as TipoCarro

@@ -1,6 +1,5 @@
 package livroandroid.com.carros.activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import livroandroid.com.carros.R
@@ -9,27 +8,24 @@ import livroandroid.com.carros.domain.Carro
 import livroandroid.com.carros.extensions.loadUrl
 import livroandroid.com.carros.extensions.setupToobar
 
-class CarroActivity : AppCompatActivity() {
+class CarroActivity : BaseActivity() {
 
-    var carro: Carro? = null
+    val carro by lazy { intent.getSerializableExtra("carro") as Carro }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carro)
 
         // Configura Toobar
-        setupToobar(R.id.toolbar, upNavigation = true)
-
-        // Lê o objeto carro enviado por parâmetro
-        carro = intent.getSerializableExtra("carro") as Carro
+        setupToobar(R.id.toolbar, carro.nome,true)
 
         // Atualiza o Título da tela com o nome do carro
-        supportActionBar?.title = carro?.nome
+        supportActionBar?.title = carro.nome
 
         // Atualiza a descrição do carro
-        tDesc.text = carro?.desc
+        tDesc.text = carro.desc
 
         // Moatra a foto do carro (deito na extensão Picasso.kt)
-        img.loadUrl(carro?.urlFoto)
+        img.loadUrl(carro.urlFoto)
     }
 }

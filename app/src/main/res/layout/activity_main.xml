@@ -8,13 +8,33 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <!-- Este layout adiciona o conteúdo da tela -->
-    <include
-        layout="@layout/app_bar_main"
+    <!-- Bloco 1: Conteúdo da tela -->
+    <LinearLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <!-- Menu lateral -->
+        <!-- Toobar -->
+        <include layout="@layout/toobar"/>
+
+        <!-- Tabs + ViewPager -->
+        <TableLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:background="@color/white"/>
+
+    </LinearLayout>
+
+    <!-- Bloco 2: Menu lateral -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
