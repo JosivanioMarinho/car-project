@@ -5,16 +5,19 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import livroandroid.com.carros.R
+import livroandroid.com.carros.adapter.TabsAdapter
 import livroandroid.com.carros.domain.TipoCarro
 import livroandroid.com.carros.extensions.setupToobar
 import livroandroid.com.carros.extensions.toast
@@ -32,6 +35,20 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         // Menu lateral
         setUpNavDrawer()
+
+        // Tabs
+        setupViewPagerTabs()
+    }
+
+    private fun setupViewPagerTabs() {
+        // Configura o ViewPager + Tabs
+        // As Variáveis ViewPager e Tabs são criadas automaticamente pelas kotlinextenss
+        viewPager.offscreenPageLimit = 2
+        viewPager.adapter = TabsAdapter(context, supportFragmentManager)
+        tabLayout.setupWithViewPager(viewPager)
+        // Cor branca nos textos (o fundo azul é definido no layout)
+        val cor = ContextCompat.getColor(context, R.color.white)
+        tabLayout.setTabTextColors(cor, cor)
     }
 
     // Configuração do menu lateral

@@ -16,6 +16,8 @@ class CarroActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carro)
 
+
+
         // Configura Toobar
         setupToobar(R.id.toolbar, carro.nome,true)
 

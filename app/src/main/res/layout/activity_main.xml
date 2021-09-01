@@ -19,7 +19,7 @@
         <include layout="@layout/toobar"/>
 
         <!-- Tabs + ViewPager -->
-        <TableLayout
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
