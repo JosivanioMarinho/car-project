@@ -1,61 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.CarroActivity"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
-    <!-- Toobar -->
-    <include layout="@layout/toobar"/>
-
-    <!--  Views com os dados dos carros -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
+    <!-- Conteúdo com Scroll -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="6dp">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <!-- View com os dados do carro -->
+        <include layout="@layout/include_activity_carro"/>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Layout da AppBar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toobar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="2dp">
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
 
             <ImageView
-                android:id="@+id/img"
-                android:layout_width="@dimen/foto_carro_width"
-                android:layout_height="@dimen/foto_carro_height"
-                android:layout_gravity="center"
-                android:scaleType="center"/>
-
-            <View
-                android:background="@android:color/darker_gray"
+                android:id="@+id/appBarImg"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"/>
+                android:layout_height="130dp"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:layout_marginHorizontal="32dp"
+                android:background="@color/colorPrimary"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax" />
 
-            <ScrollView
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/scroll_toobar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-                <TextView
-                    android:id="@+id/tDesc"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_margin="8dp"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:tint="@color/white"
+        android:src="@drawable/ic_favorite"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="bottom|right|end"/>
 
-            </ScrollView>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

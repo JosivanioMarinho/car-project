@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
@@ -21,6 +22,7 @@ import livroandroid.com.carros.adapter.TabsAdapter
 import livroandroid.com.carros.domain.TipoCarro
 import livroandroid.com.carros.extensions.setupToobar
 import livroandroid.com.carros.extensions.toast
+import org.jetbrains.anko.colorAttr
 import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -38,6 +40,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         // Tabs
         setupViewPagerTabs()
+
+        // FAB
+        fab.setOnClickListener {
+            val snack = Snackbar.make(it, "Clicou no botão FAB!", Snackbar.LENGTH_SHORT)
+            snack.show()
+        }
     }
 
     private fun setupViewPagerTabs() {
