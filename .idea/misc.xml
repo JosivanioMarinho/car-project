@@ -14,7 +14,8 @@
         <entry key="app/src/main/res/layout/fragment_base.xml" value="0.13451086956521738" />
         <entry key="app/src/main/res/layout/fragment_carros.xml" value="0.178125" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.29026036644165865" />
-        <entry key="app/src/main/res/layout/include_activity_carro.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/include_activity_carro.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/include_progress.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/include_toobar.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/toobar.xml" value="0.14010416666666667" />
