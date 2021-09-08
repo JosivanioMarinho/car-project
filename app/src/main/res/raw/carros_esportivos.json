@@ -1,0 +1,121 @@
+[
+  {
+    "id":13241,
+    "nome":"Cadillac Deville",
+    "descricao":"O Tucker foi realmente uma inovação no mundo do design automóvel, e embora o modelo 1948 foi o único modelo já produzido seu efeito sobre o mundo dos automóveis ainda pode ser sentida até hoje. Preston Tucker e Alex Tremulis projetou o Tucker como uma tentativa de entrar na indústria automotiva, e apesar de apenas um punhado de carros foram produzidos os recursos que estavam presentes naqueles carros eram extremamente inovador para a época.",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Cadillac_Deville_Convertible.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/cadillac_deville.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13271,
+    "nome":"Ferrari 250 GTO update",
+    "tipo":"esportivos",
+    "descricao":"Desc Ferrari 250 GTO",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Ferrari_250_GTO.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/ferrari_gto.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13311,
+    "nome":"Ferrari FF 2",
+    "tipo":"esportivos",
+    "descricao":"Desc Ferrari FF UP",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/Ferrari_FF.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/ferrari_ff.mp4",
+    "latitude":"44.532218",
+    "longitude":"10.864019"
+  },
+  {
+    "id":13321,
+    "nome":"AUDI GT Spyder",
+    "tipo":"esportivos",
+    "descricao":"Desc AUDI GT Spyder",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/Audi_Spyder.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/audi_gt.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13331,
+    "nome":"Porsche Panamera",
+    "tipo":"esportivos",
+    "descricao":"Desc Porsche Panamera",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/Porsche_Panamera.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/porsche_panamera.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13341,
+    "nome":"Lamborghini Aventador",
+    "tipo":"esportivos",
+    "descricao":"Desc Lamborghini Aventador",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/Lamborghini_Aventador.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/lamborghini_aventador.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13351,
+    "nome":"Chevrolet Corvette Z06",
+    "tipo":"esportivos",
+    "descricao":"Desc Chevrolet Corvette Z06",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/Chevrolet_Corvette_Z06.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/chevrolet_corvette.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13361,
+    "nome":"BMW M5",
+    "tipo":"esportivos",
+    "descricao":"Desc BMW M5",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/BMW.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/bmw-m5.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13371,
+    "nome":"Renault Megane RS Trophy",
+    "tipo":"esportivos",
+    "descricao":"Desc Renault Megane RS Trophy",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/Renault_Megane_Trophy.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/renault_megane.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13381,
+    "nome":"Maserati Grancabrio Sport",
+    "tipo":"esportivos",
+    "descricao":"Desc Maserati Grancabrio Sport",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/Maserati_Grancabrio_Sport.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/renault_megane.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13391,
+    "nome":"McLAREN MP4-12C",
+    "tipo":"esportivos",
+    "descricao":"Desc McLAREN MP4-12C",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/McLAREN.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/mcLaren.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13401,
+    "nome":"MERCEDES-BENZ C63 AMG",
+    "tipo":"esportivos",
+    "descricao":"Desc MERCEDES-BENZ C63 AMG",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/MERCEDES_BENZ_AMG.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/esportivos/mercedes.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  }
+]

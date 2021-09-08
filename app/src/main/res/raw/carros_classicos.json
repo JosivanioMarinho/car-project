@@ -1,0 +1,52 @@
+[
+  {
+    "id":13251,
+    "nome":"Chevrolet Bel-Air",
+    "tipo":"classicos",
+    "descricao":"Desc Chevrolet Bel-Air",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_BelAir.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/chevrolet_bel_air.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13261,
+    "nome":"Cadillac Eldorado",
+    "tipo":"classicos",
+    "descricao":"Desc Cadillac Eldorado",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Cadillac_Eldorado.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/cadillac_eldorado.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13281,
+    "nome":"Dodge Challenger",
+    "tipo":"classicos",
+    "descricao":"Desc Dodge Challenger",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Dodge_Challenger.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/dodge_challenger.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13291,
+    "nome":"Camaro SS 1969",
+    "tipo":"classicos",
+    "descricao":"Desc Camaro SS 1969",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Camaro_SS.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/camaro_ss.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  },
+  {
+    "id":13301,
+    "nome":"Ford Mustang 1976",
+    "tipo":"classicos",
+    "descricao":"Desc Ford Mustang 1976",
+    "urlFoto":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Ford_Mustang.png",
+    "urlVideo":"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/ford_mustang.mp4",
+    "latitude":"-23.564224",
+    "longitude":"-46.653156"
+  }
+]
