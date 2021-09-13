@@ -25,7 +25,7 @@ class TabsAdapter(private val context: Context, fm: FragmentManager) :
         return context.getString(tipo.string)
     }
 
-    // Fragment que vai mostrar a lsita de carros
+    // Fragment que vai mostrar a lista de carros
     override fun getItem(position: Int): Fragment {
         val tipo = getTipoCarro(position)
         val f: Fragment = CarrosFragment()

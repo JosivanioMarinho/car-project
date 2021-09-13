@@ -1,20 +1,23 @@
 package livroandroid.com.carros.fragments
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_carros.*
+import kotlinx.android.synthetic.main.include_progress.*
 import livroandroid.com.carros.R
 import livroandroid.com.carros.activity.CarroActivity
 import livroandroid.com.carros.adapter.CarroAdapter
 import livroandroid.com.carros.domain.Carro
 import livroandroid.com.carros.domain.CarroService
 import livroandroid.com.carros.domain.TipoCarro
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.uiThread
 
 class CarrosFragment : BaseFragment() {
 
@@ -30,6 +33,11 @@ class CarrosFragment : BaseFragment() {
         return view
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        taskCarros()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Views
@@ -38,16 +46,19 @@ class CarrosFragment : BaseFragment() {
         recyclerView.setHasFixedSize(true)
     }
 
-    override fun onResume() {
-        super.onResume()
-        taskCarros()
-    }
-
     private fun taskCarros() {
-        // Busca os carros
-        this.carros = CarroService.getCarros(context, tipo)
-        // Atualiza a lista
-        recyclerView.adapter = CarroAdapter(carros) { onClickCarro(it) }
+        // Liga  a animação do progress
+        progress.visibility = View.VISIBLE
+        doAsync {
+            // Busca os carros
+            carros = CarroService.getCarros(tipo)
+            uiThread {
+                // Atualiza a lista
+                recyclerView.adapter = CarroAdapter(carros) { onClickCarro(it) }
+                // Esconde o ProgressBar
+                progress.visibility = View.INVISIBLE
+            }
+        }
     }
 
     // Trata o evento de click no carro

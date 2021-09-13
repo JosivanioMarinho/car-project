@@ -3,26 +3,22 @@ package livroandroid.com.carros.domain
 import android.content.Context
 import livroandroid.com.carros.R
 import livroandroid.com.carros.extensions.fromJson
+import livroandroid.com.carros.utils.HttpHelper
 import org.json.JSONArray
 
 object CarroService {
 
-    private const val TAG = "livro"
+    private const val BASE_URL = "https://carros-springboot.herokuapp.com/api/v1/carros"
 
     // Busca os carros por tipo (clássicos, esportivos ou luxo)
-    fun getCarros(context: Context?, tipo: TipoCarro): List<Carro> {
-        // Este é o arquivo que temos que ler
-        val raw = getArquivoRaw(tipo)
-        // Abre o arquivo para leitura
-        val resources = context?.resources
-        val inputStream = resources?.openRawResource(raw)
-        inputStream?.bufferedReader().use {
-            // Lê o Json e cria a lista de carros
-            val json = it?.readText()
-            // Converte o Json para Lisy<carro>
-            val carros = fromJson<List<Carro>>(json!!)
-            return carros
-        }
+    fun getCarros(tipo: TipoCarro): List<Carro> {
+       // Cria a url para o tipo informado
+        val url = "$BASE_URL/tipo/${tipo.name}"
+        // Faz a requisição GET  no  web service
+        val json = HttpHelper.get(url)
+        // Cria a lista de carros a partir do json
+        val carros = fromJson<List<Carro>>(json)
+        return carros
     }
     // Retorna o arquivo que temos que ler para o tipo informado
     private fun getArquivoRaw(tipo: TipoCarro) = when(tipo) {

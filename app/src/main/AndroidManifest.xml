@@ -25,6 +25,7 @@
             android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.MainActivity"
+            android:launchMode="singleTop"
             android:label="@string/app_name"
             android:theme="@style/Theme.Carros.NavDrawer">
             <intent-filter>
