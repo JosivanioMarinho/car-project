@@ -1,10 +1,12 @@
 package livroandroid.com.carros.fragments
 
 import android.app.ProgressDialog
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_carros.*
@@ -15,6 +17,7 @@ import livroandroid.com.carros.adapter.CarroAdapter
 import livroandroid.com.carros.domain.Carro
 import livroandroid.com.carros.domain.CarroService
 import livroandroid.com.carros.domain.TipoCarro
+import livroandroid.com.carros.utils.AndroidUtils
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
@@ -33,8 +36,10 @@ class CarrosFragment : BaseFragment() {
         return view
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        // Carrega a lista de carros
         taskCarros()
     }
 
@@ -46,19 +51,28 @@ class CarrosFragment : BaseFragment() {
         recyclerView.setHasFixedSize(true)
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun taskCarros() {
-        // Liga  a animação do progress
-        progress.visibility = View.VISIBLE
-        doAsync {
-            // Busca os carros
-            carros = CarroService.getCarros(tipo)
-            uiThread {
-                // Atualiza a lista
-                recyclerView.adapter = CarroAdapter(carros) { onClickCarro(it) }
-                // Esconde o ProgressBar
-                progress.visibility = View.INVISIBLE
+        // Se existir conexão, a busca dos carros é feita
+        val internetOk = AndroidUtils.isNetworkAvaiable(context)
+        if (internetOk) {
+            // Liga  a animação do progress
+            progress.visibility = View.VISIBLE
+            doAsync {
+                // Busca os carros
+                carros = CarroService.getCarros(tipo)
+                uiThread {
+                    // Atualiza a lista
+                    recyclerView.adapter = CarroAdapter(carros) { onClickCarro(it) }
+                    // Esconde o ProgressBar
+                    progress.visibility = View.INVISIBLE
+                }
             }
+        } else {
+            // Se não existe conexão, é mostrado uma mensagem de erro
+            networkText.text = "Erro na conexão :("
         }
+
     }
 
     // Trata o evento de click no carro

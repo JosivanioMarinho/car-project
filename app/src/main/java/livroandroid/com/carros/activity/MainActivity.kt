@@ -43,8 +43,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         // FAB
         fab.setOnClickListener {
-            val snack = Snackbar.make(it, "Clicou no botão FAB!", Snackbar.LENGTH_SHORT)
-            snack.show()
+            // Abre a tela de cadastro
+            startActivity<CarroFormActivity>()
         }
     }
 

@@ -3,7 +3,9 @@ package livroandroid.com.carros.domain
 import android.content.Context
 import livroandroid.com.carros.R
 import livroandroid.com.carros.extensions.fromJson
+import livroandroid.com.carros.extensions.toJson
 import livroandroid.com.carros.utils.HttpHelper
+import okhttp3.Response
 import org.json.JSONArray
 
 object CarroService {
@@ -20,6 +22,16 @@ object CarroService {
         val carros = fromJson<List<Carro>>(json)
         return carros
     }
+
+    // Salva um carro
+    fun save(carro: Carro): livroandroid.com.carros.domain.Response {
+        // Faz POST do json carro
+        val json = HttpHelper.post(BASE_URL, carro.toJson())
+        // Lê a resposta
+        val response = fromJson<livroandroid.com.carros.domain.Response>(json)
+        return response
+    }
+
     // Retorna o arquivo que temos que ler para o tipo informado
     private fun getArquivoRaw(tipo: TipoCarro) = when(tipo) {
         TipoCarro.Classicos -> R.raw.carros_classicos
