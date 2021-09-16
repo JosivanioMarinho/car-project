@@ -3,10 +3,6 @@ package livroandroid.com.carros.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import livroandroid.com.carros.R
 import livroandroid.com.carros.domain.Carro

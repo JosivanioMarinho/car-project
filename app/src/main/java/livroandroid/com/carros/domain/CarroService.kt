@@ -1,6 +1,7 @@
 package livroandroid.com.carros.domain
 
 import android.content.Context
+import android.util.Log
 import livroandroid.com.carros.R
 import livroandroid.com.carros.extensions.fromJson
 import livroandroid.com.carros.extensions.toJson
@@ -27,7 +28,16 @@ object CarroService {
     fun save(carro: Carro): livroandroid.com.carros.domain.Response {
         // Faz POST do json carro
         val json = HttpHelper.post(BASE_URL, carro.toJson())
+        Log.d("save", "Json save: $json")
         // Lê a resposta
+        val response = fromJson<livroandroid.com.carros.domain.Response>(json)
+        return response
+    }
+
+    // Deleta um carro
+    fun delete(carro: Carro): livroandroid.com.carros.domain.Response{
+        val url = "$BASE_URL/${carro.id}"
+        val json = HttpHelper.delete(url)
         val response = fromJson<livroandroid.com.carros.domain.Response>(json)
         return response
     }

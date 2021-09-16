@@ -43,7 +43,7 @@ object HttpHelper {
         return getJson(request)
     }
     // Lê a resposta do servidor no formato json
-    private fun getJson(request: Request?): String {
+    private fun getJson(request: Request): String {
         val response = client.newCall(request).execute()
         val responseBody = response.body()
         if (responseBody != null) {

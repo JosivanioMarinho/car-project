@@ -3,14 +3,18 @@ package livroandroid.com.carros.activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import livroandroid.com.carros.R
 import kotlinx.android.synthetic.main.activity_carro.*
 import kotlinx.android.synthetic.main.include_activity_carro.*
 import livroandroid.com.carros.domain.Carro
+import livroandroid.com.carros.domain.CarroService
+import livroandroid.com.carros.domain.RefreshListEvent
 import livroandroid.com.carros.extensions.loadUrl
 import livroandroid.com.carros.extensions.setupToobar
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
+import livroandroid.com.carros.extensions.toast
+import org.greenrobot.eventbus.EventBus
+import org.jetbrains.anko.*
 
 class CarroActivity : BaseActivity() {
 
@@ -27,7 +31,7 @@ class CarroActivity : BaseActivity() {
         supportActionBar?.title = carro.nome
 
         // Atualiza a descrição do carro
-        tDesc.text = carro.desc
+        tDesc.text = carro.descricao
 
         // Moatra a foto do carro (deito na extensão Picasso.kt)
         appBarImg.loadUrl(carro.urlFoto)
@@ -40,16 +44,34 @@ class CarroActivity : BaseActivity() {
     }
     // Trata is eventos de clique do menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item?.itemId) {
+        when(item.itemId) {
             R.id.action_editar -> {
                 // Abre a tela de editar passando o carro como parâmetro
                 startActivity<CarroFormActivity>("carro" to carro)
                 finish()
             }
             R.id.action_deletar -> {
-                toast("Carro deletado")
+                // Mostra o alerta de confirmaçao
+                alert("Deseja excluir este carro?") {
+                    title = "Excluir"
+                    positiveButton(R.string.sim) { taskDeletar() }
+                    negativeButton(R.string.nao) {}
+                }.show()
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    // Deleta um carro
+    private fun taskDeletar(){
+        doAsync {
+            val response = CarroService.delete(carro)
+            uiThread {
+                // Dispara evento para atualizar a lista de carros
+                EventBus.getDefault().post(RefreshListEvent())
+                toast("Carro com id ${response.id} excluido!")
+                finish()
+            }
+        }
     }
 }

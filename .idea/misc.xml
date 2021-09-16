@@ -6,6 +6,7 @@
         <entry key="../../../../../layout/custom_preview.xml" value="0.24722222222222223" />
         <entry key="app/src/main/res/layout/activity_carro.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_carro_form.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_carro_form_contents.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_carros.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_site_livro.xml" value="0.19322916666666667" />
@@ -23,6 +24,7 @@
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/menu/main.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/menu/menu_carro.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/menu/menu_carro_form.xml" value="0.16" />
       </map>
     </option>
   </component>

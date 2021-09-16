@@ -1,9 +1,18 @@
 package livroandroid.com.carros.activity
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import livroandroid.com.carros.R
 import livroandroid.com.carros.domain.Carro
 import livroandroid.com.carros.extensions.setupToobar
+import org.jetbrains.anko.doAsync
+import kotlinx.android.synthetic.main.activity_carro_form_contents.*
+import livroandroid.com.carros.domain.CarroService
+import livroandroid.com.carros.domain.RefreshListEvent
+import org.greenrobot.eventbus.EventBus
+import org.jetbrains.anko.toast
+import org.jetbrains.anko.uiThread
 
 class CarroFormActivity : BaseActivity() {
 
@@ -17,5 +26,53 @@ class CarroFormActivity : BaseActivity() {
         setupToobar(R.id.toolbar, title, true)
         // Liga o upNvigation
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Menu com o botão salvar na toobar
+        menuInflater.inflate(R.menu.menu_carro_form, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.action_salvar -> {
+                taskSalvar()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    // Cria a Thread para salvar um carro
+    private fun taskSalvar() {
+        doAsync {
+            val c = createCarro()
+            // Salva o carro
+            val response = CarroService.save(c)
+            uiThread {
+                // Dispara evento para atualizar a lista de carros
+                EventBus.getDefault().post(RefreshListEvent())
+                toast("Carro criado com o id: ${response.id}")
+                finish()
+            }
+        }
+    }
+
+    // Cria um carro com os valores do formulãrio
+    fun createCarro(): Carro {
+        val c = carro ?: Carro()
+        c.tipo = getTipo()
+        c.nome = tNome.text.toString()
+        c.descricao = tDesc.text.toString()
+        return c
+    }
+
+    // Converte o valor do Radius para string
+    fun getTipo(): String {
+        when (radioTipo.checkedRadioButtonId) {
+            R.id.tipoEsportivo -> return "esportivos"
+            R.id.tipoClassico -> return "classicos"
+        }
+        return "luxo"
     }
 }

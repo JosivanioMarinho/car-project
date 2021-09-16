@@ -16,8 +16,12 @@ import livroandroid.com.carros.activity.CarroActivity
 import livroandroid.com.carros.adapter.CarroAdapter
 import livroandroid.com.carros.domain.Carro
 import livroandroid.com.carros.domain.CarroService
+import livroandroid.com.carros.domain.RefreshListEvent
 import livroandroid.com.carros.domain.TipoCarro
 import livroandroid.com.carros.utils.AndroidUtils
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
@@ -49,6 +53,25 @@ class CarrosFragment : BaseFragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.setHasFixedSize(true)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Regista no bus de eventos
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Cancela o registro no bus de eventos
+        EventBus.getDefault().unregister(this)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMassageEvent(event: RefreshListEvent){
+        // Recebeu o evento
+        taskCarros()
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

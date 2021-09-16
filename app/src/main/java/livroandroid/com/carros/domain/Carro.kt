@@ -4,10 +4,10 @@ import java.io.Serializable
 
 class Carro : Serializable {
 
-    var id: Long = 0
+    var id: Long? = null
     var tipo = ""
     var nome = ""
-    var desc = ""
+    var descricao = ""
     var urlFoto = ""
     var urlInfo = ""
     var urlVideo = ""
