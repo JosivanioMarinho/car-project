@@ -4,6 +4,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import io.reactivex.Observable
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.schedulers.Schedulers.io
 import livroandroid.com.carros.R
 import kotlinx.android.synthetic.main.activity_carro.*
 import kotlinx.android.synthetic.main.include_activity_carro.*
@@ -64,14 +69,18 @@ class CarroActivity : BaseActivity() {
 
     // Deleta um carro
     private fun taskDeletar(){
-        doAsync {
-            val response = CarroService.delete(carro)
-            uiThread {
+        Observable.fromCallable { CarroService.delete(carro) }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({response ->
+                /** onNext **/
                 // Dispara evento para atualizar a lista de carros
                 EventBus.getDefault().post(RefreshListEvent())
                 toast("Carro com id ${response.id} excluido!")
                 finish()
-            }
-        }
+            },{
+                /** onerror **/
+                toast("Ocorreu um erro ao deletar um carro.")
+            })
     }
 }

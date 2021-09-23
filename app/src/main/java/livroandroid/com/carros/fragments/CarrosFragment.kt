@@ -85,7 +85,7 @@ class CarrosFragment : BaseFragment() {
             // Liga  a animação do progress
             progress.visibility = View.VISIBLE
 
-            /*Observable.fromCallable{ CarroService.getCarros(tipo) } // Busca os carros
+            CarroService.getCarros(tipo) // Busca os carros
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe ({
@@ -98,18 +98,18 @@ class CarrosFragment : BaseFragment() {
                     /** onerror **/
                     Toast.makeText(context, "Ocorreu um erro!", Toast.LENGTH_SHORT).show()
                     progress.visibility = View.INVISIBLE
-                })*/
+                })
 
-            doAsync {
-                // Busca os carros
-                carros = CarroService.getCarros(tipo)
-                uiThread {
-                    // Atualiza a lista
-                    recyclerView.adapter = CarroAdapter(carros) { onClickCarro(it) }
-                    // Esconde o ProgressBar
-                    progress.visibility = View.INVISIBLE
-                }
-            }
+//            doAsync {
+//                // Busca os carros
+//                carros = CarroService.getCarros(tipo)
+//                uiThread {
+//                    // Atualiza a lista
+//                    recyclerView.adapter = CarroAdapter(carros) { onClickCarro(it) }
+//                    // Esconde o ProgressBar
+//                    progress.visibility = View.INVISIBLE
+//                }
+//            }
         } else {
             // Se não existe conexão, é mostrado uma mensagem de erro
             networkText.text = "Erro na conexão :("

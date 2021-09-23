@@ -1,8 +1,12 @@
 package livroandroid.com.carros.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import livroandroid.com.carros.R
 import livroandroid.com.carros.domain.Carro
 import livroandroid.com.carros.extensions.setupToobar
@@ -43,19 +47,38 @@ class CarroFormActivity : BaseActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    // Cria a Thread para salvar um carro
+    @SuppressLint("CheckResult")
     private fun taskSalvar() {
-        doAsync {
+
+        Observable.fromCallable {
+            // Salva o carro no servidor
             val c = createCarro()
-            // Salva o carro
-            val response = CarroService.save(c)
-            uiThread {
+            CarroService.save(c)
+        }.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({ response ->
+                /** onNext **/
                 // Dispara evento para atualizar a lista de carros
                 EventBus.getDefault().post(RefreshListEvent())
                 toast("Carro criado com o id: ${response.id}")
                 finish()
-            }
-        }
+            },{
+                /** onError **/
+                toast("Ocorreu um erro ao salvar um erro.")
+            })
+
+        // Cria a Thread para salvar um carro
+//        doAsync {
+//            val c = createCarro()
+//            // Salva o carro
+//            val response = CarroService.save(c)
+//            uiThread {
+//                // Dispara evento para atualizar a lista de carros
+//                EventBus.getDefault().post(RefreshListEvent())
+//                toast("Carro criado com o id: ${response.id}")
+//                finish()
+//            }
+//        }
     }
 
     // Cria um carro com os valores do formulãrio

@@ -2,6 +2,7 @@ package livroandroid.com.carros.domain
 
 import android.content.Context
 import android.util.Log
+import io.reactivex.Observable
 import livroandroid.com.carros.R
 import livroandroid.com.carros.domain.retrofit.CarrosAPI
 import livroandroid.com.carros.extensions.fromJson
@@ -10,6 +11,7 @@ import livroandroid.com.carros.utils.HttpHelper
 import okhttp3.Response
 import org.json.JSONArray
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object CarroService {
@@ -21,15 +23,15 @@ object CarroService {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
         service = retrofit.create(CarrosAPI::class.java)
     }
 
     // Busca os carros por tipo (clássicos, esportivos ou luxo)
-    fun getCarros(tipo: TipoCarro): List<Carro> {
-       val call = service.getCarros(tipo.name)
-       val carros = call.execute().body()
-       return carros ?: listOf()
+    fun getCarros(tipo: TipoCarro): Observable<List<Carro>> {
+        // Pode retornar direto aqui, pois o Rx e Retrofit vão converter
+        return service.getCarros(tipo.name)
     }
 
     // Salva um carro
