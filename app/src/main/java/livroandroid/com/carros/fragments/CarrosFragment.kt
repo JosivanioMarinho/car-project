@@ -1,14 +1,17 @@
 package livroandroid.com.carros.fragments
 
-import android.app.ProgressDialog
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_carros.*
 import kotlinx.android.synthetic.main.include_progress.*
 import livroandroid.com.carros.R
@@ -81,6 +84,22 @@ class CarrosFragment : BaseFragment() {
         if (internetOk) {
             // Liga  a animação do progress
             progress.visibility = View.VISIBLE
+
+            /*Observable.fromCallable{ CarroService.getCarros(tipo) } // Busca os carros
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe ({
+                    /** onNext **/
+                    // Atualiza a interface
+                    // it é o parâmetro padrão das lambdas, sendo que neste caso é a lista dos carros
+                    recyclerView.adapter = CarroAdapter(it) { onClickCarro(it) }
+                    progress.visibility = View.INVISIBLE
+                },{
+                    /** onerror **/
+                    Toast.makeText(context, "Ocorreu um erro!", Toast.LENGTH_SHORT).show()
+                    progress.visibility = View.INVISIBLE
+                })*/
+
             doAsync {
                 // Busca os carros
                 carros = CarroService.getCarros(tipo)
