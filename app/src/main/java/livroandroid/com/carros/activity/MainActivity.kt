@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,6 +23,7 @@ import livroandroid.com.carros.adapter.TabsAdapter
 import livroandroid.com.carros.domain.TipoCarro
 import livroandroid.com.carros.extensions.setupToobar
 import livroandroid.com.carros.extensions.toast
+import livroandroid.com.carros.utils.Prefs
 import org.jetbrains.anko.colorAttr
 import org.jetbrains.anko.startActivity
 
@@ -57,6 +59,21 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         // Cor branca nos textos (o fundo azul é definido no layout)
         val cor = ContextCompat.getColor(context, R.color.white)
         tabLayout.setTabTextColors(cor, cor)
+
+        // salva e recupera a ultimma Tab acessada
+        val tabIdx = Prefs.tabIdx
+        viewPager.currentItem = tabIdx
+        viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+            override fun onPageScrollStateChanged(state: Int) {}
+
+            override fun onPageSelected(position: Int) {
+                // Salva o índice da página/tab selecionada
+                Prefs.tabIdx = position
+            }
+        })
     }
 
     // Configuração do menu lateral

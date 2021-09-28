@@ -13,6 +13,7 @@ class CarrosApplication : Application() {
         // Salva a instancia para termos acesso como Singleton
         appInstance = this
     }
+
     companion object {
         // Singleton da classe Application
         private var appInstance: CarrosApplication? = null
