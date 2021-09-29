@@ -2,6 +2,7 @@ package livroandroid.com.carros.fragments
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,17 +30,17 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
 
-class CarrosFragment : BaseFragment() {
+open class CarrosFragment : BaseFragment() {
 
-    private var tipo = TipoCarro.Classicos
-    private var carros = listOf<Carro>()
+    private var tipo: TipoCarro? = TipoCarro.Classicos
+    protected var carros = listOf<Carro>()
 
     // Cria a View do Fragment
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_carros, container, false)
         // Lê os tipos dos argumentos
-        this.tipo = arguments?.getSerializable("tipo") as TipoCarro
+        this.tipo = arguments?.getSerializable("tipo") as? TipoCarro
         return view
     }
 
@@ -60,6 +61,10 @@ class CarrosFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (arguments != null) {
+            tipo = arguments?.getSerializable("tipo") as TipoCarro
+            Log.d("isArgumetNull", "Arguments : ${tipo?.name}")
+        }
         // Regista no bus de eventos
         EventBus.getDefault().register(this)
     }
@@ -78,14 +83,14 @@ class CarrosFragment : BaseFragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun taskCarros() {
+    open fun taskCarros() {
         // Se existir conexão, a busca dos carros é feita
         val internetOk = AndroidUtils.isNetworkAvaiable(context)
         if (internetOk) {
             // Liga  a animação do progress
             progress.visibility = View.VISIBLE
 
-            CarroService.getCarros(tipo) // Busca os carros
+            CarroService.getCarros(tipo!!) // Busca os carros
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe ({
@@ -118,7 +123,7 @@ class CarrosFragment : BaseFragment() {
     }
 
     // Trata o evento de click no carro
-    private fun onClickCarro(carro: Carro) {
+    open fun onClickCarro(carro: Carro) {
         activity?.startActivity<CarroActivity>("carro" to carro)
     }
 }

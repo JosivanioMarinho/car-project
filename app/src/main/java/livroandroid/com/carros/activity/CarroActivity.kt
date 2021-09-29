@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_carro.*
 import kotlinx.android.synthetic.main.include_activity_carro.*
 import livroandroid.com.carros.domain.Carro
 import livroandroid.com.carros.domain.CarroService
+import livroandroid.com.carros.domain.FavoritosService
 import livroandroid.com.carros.domain.RefreshListEvent
 import livroandroid.com.carros.extensions.loadUrl
 import livroandroid.com.carros.extensions.setupToobar
@@ -40,6 +41,26 @@ class CarroActivity : BaseActivity() {
 
         // Moatra a foto do carro (deito na extensão Picasso.kt)
         appBarImg.loadUrl(carro.urlFoto)
+
+        fab.setOnClickListener { onClickFavoritar(carro) }
+    }
+
+    // Adiciona ou remove o carro dos favoritos
+    private fun onClickFavoritar(carro: Carro) {
+        taskFavoritar(carro)
+    }
+
+    private fun taskFavoritar(carro: Carro) {
+        doAsync {
+            val favoritado = FavoritosService.favoritar(carro)
+            uiThread {
+                // Dispara o evento para atualizar a lista de carros
+                EventBus.getDefault().post(RefreshListEvent())
+                // Alerta de sucesso
+                toast(if (favoritado) R.string.msg_carro_favoritado
+                    else R.string.msg_carro_desfavoritado)
+            }
+        }
     }
 
     // Infla o menu na toobar

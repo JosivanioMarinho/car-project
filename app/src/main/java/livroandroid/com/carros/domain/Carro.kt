@@ -1,10 +1,15 @@
 package livroandroid.com.carros.domain
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
+@Entity(tableName = "carro")
 class Carro : Serializable {
 
+    @PrimaryKey
     var id: Long? = null
+
     var tipo = ""
     var nome = ""
     var descricao = ""

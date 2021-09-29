@@ -53,7 +53,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private fun setupViewPagerTabs() {
         // Configura o ViewPager + Tabs
         // As Variáveis ViewPager e Tabs são criadas automaticamente pelas kotlinextenss
-        viewPager.offscreenPageLimit = 2
+        viewPager.offscreenPageLimit = 3
         viewPager.adapter = TabsAdapter(context, supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
         // Cor branca nos textos (o fundo azul é definido no layout)
